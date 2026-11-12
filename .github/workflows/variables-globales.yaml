@@ -1,0 +1,18 @@
+name: Variables de entorno globales
+
+on:
+  workflow_dispatch:
+
+env:
+  CURSO: GitHub Actions
+
+jobs:
+  bienvenida:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Bienvenido al curso de $CURSO"
+
+  resumen:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Fin del ejercicio de $CURSO"

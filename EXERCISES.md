@@ -1,122 +1,22 @@
-# GitHub Actions Exercises
+## 📖 Guía de Ejercicios: GitHub Actions
+Este documento contiene 10 ejercicios diseñados para dominar la automatización con GitHub Actions.
 
-This document contains a list of exercises to practice creating and using GitHub Actions workflows for various tasks.
+1. Variables de Entorno Globales: Crea un workflow que defina una variable de entorno a nivel de workflow y la use en dos jobs distintos.
 
----
+2. Manejo de Secretos: Simula un login. Usa un "Secreto" de GitHub para ocultar una contraseña y mostrarla de forma segura (enmascarada) en el log.
 
-## 1. Python Testing Workflow
-**Objective**: Create a GitHub Actions workflow to run Python unit tests on every pull request.
+3. Matriz de Estrategia: Ejecuta un mismo job de "Test" simultáneamente en tres versiones diferentes de Python (3.11 y 3.12).
 
-### Steps:
-1. Set up a Python environment using `actions/setup-python`.
-2. Install dependencies from `requirements.txt`.
-3. Run Python unit tests using `unittest` or `pytest`.
-4. Trigger the workflow on `pull_request` events.
+4. Artefactos de Construcción: Job 1 genera un archivo .txt con un mensaje. Job 2 debe descargar ese archivo y mostrar su contenido.
 
----
+5. Filtros de Rama y Ruta: Crea un workflow que solo se active cuando haya un push en la rama develop Y que solo afecte a archivos dentro de una carpeta llamada docs/.
 
-## 2. Docker Build and Push Workflow
-**Objective**: Build a Docker image and push it to Docker Hub using GitHub Actions.
+6. Validación de JSON: Crea un workflow que use una acción de la comunidad para validar que un archivo data.json en el repo tiene un formato correcto. Para este ejercicio debeis generar un archivo .json en la raíz del repositorio con las claves (curso, modulo y alumnos)
 
-### Steps:
-1. Authenticate with Docker Hub using `docker/login-action`.
-2. Build a Docker image from the repository.
-3. Tag the image with a version or `latest`.
-4. Push the image to Docker Hub.
-5. Trigger the workflow on `push` to the `main` branch.
+7. Salidas entre Jobs (Outputs): El Job A genera un número aleatorio y lo pasa como "output" al Job B.
+   
+8. Programación Temporal (Cron): Configura un workflow que se ejecute automáticamente todos los lunes a las 9:00 AM.
 
----
+9.  Contenedores de Servicio: Configura un job que levante un servicio de base de datos Postgres a través de un container de servicio y verifique su conexión Deberas configurar estas variables de entorno: POSTGRES_USER, POSTGRES_PASSWORD, POSTGRES_DB.
 
-## 3. Terraform Plan and Apply Workflow
-**Objective**: Automate Terraform workflows to manage infrastructure.
-
-### Steps:
-1. Set up Terraform CLI using `hashicorp/setup-terraform`.
-2. Run `terraform init` to initialize the working directory.
-3. Run `terraform plan` to preview infrastructure changes.
-4. Optionally, run `terraform apply` to apply changes (use manual approval for production).
-5. Trigger the workflow on `pull_request` or `push` events.
-
----
-
-## 4. CI/CD Pipeline for Python Application
-**Objective**: Create a complete CI/CD pipeline for a Python application.
-
-### Steps:
-1. Run unit tests on pull requests.
-2. Build and push a Docker image on `push` to `main`.
-3. Deploy the application to a staging environment using Docker Compose.
-4. Optionally, deploy to production after manual approval.
-
----
-
-## 5. Linting and Code Quality Checks
-**Objective**: Ensure code quality using linters and formatters.
-
-### Steps:
-1. Use `flake8` or `pylint` for Python code linting.
-2. Use `black` for Python code formatting.
-3. Fail the workflow if linting or formatting issues are found.
-4. Trigger the workflow on `pull_request` events.
-
----
-
-## 6. Scheduled Workflows
-**Objective**: Create a scheduled workflow to perform periodic tasks.
-
-### Steps:
-1. Use the `schedule` event to trigger the workflow (e.g., daily or weekly).
-2. Perform tasks such as running tests, cleaning up resources, or generating reports.
-3. Log the results for review.
-
----
-
-## 7. Multi-Environment Deployment
-**Objective**: Deploy to multiple environments (e.g., staging and production) using GitHub Actions.
-
-### Steps:
-1. Use environment-specific secrets for deployment.
-2. Deploy to staging on `push` to a feature branch.
-3. Deploy to production on `push` to `main` with manual approval.
-4. Use `matrix` strategy for parallel deployments.
-
----
-
-## 8. Notifications on Workflow Status
-**Objective**: Send notifications based on workflow status.
-
-### Steps:
-1. Use `actions/github-script` to send custom notifications.
-2. Integrate with Slack, Microsoft Teams, or email for notifications.
-3. Notify on success, failure, or manual approval.
-
----
-
-## 9. Artifact Upload and Download
-**Objective**: Use GitHub Actions to manage build artifacts.
-
-### Steps:
-1. Build an artifact (e.g., a compiled binary or Docker image).
-2. Use `actions/upload-artifact` to store the artifact.
-3. Use `actions/download-artifact` in subsequent jobs or workflows.
-
----
-
-## 10. Custom GitHub Actions
-**Objective**: Create and use a custom GitHub Action.
-
-### Steps:
-1. Write a custom action in JavaScript or Docker.
-2. Publish the action to a public or private repository.
-3. Use the custom action in a workflow.
-
----
-
-### Bonus Exercises
-- **Automate Release Creation**: Use `actions/create-release` to automate GitHub release creation.
-- **Static Site Deployment**: Deploy a static site to GitHub Pages using `actions/deploy-pages`.
-- **Security Scanning**: Integrate security tools like `trivy` or `snyk` to scan for vulnerabilities.
-
----
-
-Happy automating with GitHub Actions!
+10. Aprobación Manual y Despliegue: Un workflow con dos jobs: "Build" y "Deploy". "Deploy" solo debe ejecutarse si "Build" termina con éxito y solo si el evento es manual (workflow_dispatch).
